@@ -1,0 +1,49 @@
+		//////Breakfast//////
+		Scrambled Eggs : 100cal     
+        Fried Eggs : 100cal     
+        Home Fries with Caramelized Onions : 80cal     
+        Belgian Waffles (2) : 200cal     
+        Chicken Apple Sausage, Cooked, 4:1 : 25cal     
+        Classic Grits : 120cal     
+        Hard Cooked Cage Free Egg : 80cal     
+        //////Lunch//////
+		BBQ Beef Brisket : 200cal     
+        Rice  Pilaf     : 120cal     
+        Broccoli with Sauteed Carrots : 45cal     
+        Hot Dog on a Bun : 310cal     
+        Seasoned Hamburger Patty : 230cal     
+        Veggie Burger : 320cal     
+        French Fries : 260cal     
+        Breaded Chicken Patty : 190cal     
+        Cheese Pizza : 240cal     
+        Roasted Veggie Snowshoe Pizza : 110cal     
+        Margarita Chicken Pizza  : 640cal     
+        Cumin Roast Turkey Breast : 90cal     
+        Rice & Beans     : 210cal     
+        Broccoli, Cauliflower & Carrots : 20cal     
+        Asian Chicken & Coconut Soup : 260cal     
+        American Bounty Vegetable Soup : 60cal     
+        Fresh French Green Beans : 30cal     
+        Jasmine  Rice : 350cal     
+        Tofu Stir Fry : 340cal     
+        //////Dinner//////
+		Carved Roast Turkey Dinner : 620cal     
+        Steamed Frozen French Green Beans  : 30cal     
+        Hot Dog on a Bun : 310cal     
+        Seasoned Hamburger Patty : 230cal     
+        Veggie Burger : 320cal     
+        French Fries : 260cal     
+        Breaded Chicken Patty : 190cal     
+        Cheese Pizza : 240cal     
+        Roasted Veggie Snowshoe Pizza : 110cal     
+        Margarita Chicken Pizza  : 640cal     
+        Cheese Tortellini in Marinara Sauce : 240cal     
+        Steamed Cauliflower  : 25cal     
+        Roasted Sweet Potatoes     : 100cal     
+        Pulled BBQ Chicken Thigh : 260cal     
+        Asian Chicken & Coconut Soup : 260cal     
+        American Bounty Vegetable Soup : 60cal     
+        Roasted Brussels Sprouts : 110cal     
+        Simply Steamed Farro : 150cal     
+        Chickpeas with Garlic Tomato Sauce : 480cal     
+        
