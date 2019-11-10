@@ -5,14 +5,12 @@
  */
 package brandeisdietplanner;
 
-import java.awt.TextArea;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -25,10 +23,11 @@ public class DietPlanner extends javax.swing.JFrame {
      */
     int weight, height, age;
     int gender;
+    double calorie;
+    ArrayList<String> menu;
 
     public DietPlanner() {
         initComponents();
-        output.setVisible(false);
     }
 
     /**
@@ -51,8 +50,16 @@ public class DietPlanner extends javax.swing.JFrame {
         genderEnter = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         output = new javax.swing.JTextField();
-        Usdan = new java.awt.TextArea();
-        Sherman = new java.awt.TextArea();
+        jLabel6 = new javax.swing.JLabel();
+        shermanMenu = new javax.swing.JButton();
+        UsdanMenu = new javax.swing.JButton();
+        eatingOptions = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        Display = new java.awt.TextArea();
+        jButton1 = new javax.swing.JButton();
+        leftCalories = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        errorBox = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,85 +93,149 @@ public class DietPlanner extends javax.swing.JFrame {
             }
         });
 
-        Usdan.setEditable(false);
+        jLabel6.setText("Where you wanna eat?");
 
-        Sherman.setEditable(false);
+        shermanMenu.setText("Sherman");
+        shermanMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shermanMenuActionPerformed(evt);
+            }
+        });
+
+        UsdanMenu.setText("Usdan");
+        UsdanMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsdanMenuActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Options:");
+
+        jButton1.setText("I want to eat this!");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Calories Left:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(332, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(192, 192, 192))
             .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(genderEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ageEnter, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                        .addComponent(heightEnter)
+                        .addComponent(weightEnter))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(enter))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genderEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ageEnter, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                .addComponent(heightEnter)
-                                .addComponent(weightEnter))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(enter))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(Sherman, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                                .addComponent(Usdan, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(98, 98, 98))
+                                .addComponent(jLabel8)
+                                .addGap(25, 25, 25)
+                                .addComponent(leftCalories, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(27, 27, 27)
+                                .addComponent(eatingOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jButton1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(28, 28, 28)
+                                .addComponent(shermanMenu)))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UsdanMenu)
+                    .addComponent(Display, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(weightEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(heightEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(ageEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genderEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(27, 27, 27)
-                .addComponent(enter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Sherman, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Usdan, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(weightEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(heightEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(ageEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(genderEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(27, 27, 27)
+                        .addComponent(enter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(shermanMenu)
+                            .addComponent(UsdanMenu))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(eatingOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(errorBox, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(leftCalories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addContainerGap(74, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Display, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
-        output.setVisible(true);
+
         weight = Integer.parseInt(weightEnter.getText());
         height = Integer.parseInt(heightEnter.getText());
         age = Integer.parseInt(ageEnter.getText());
@@ -173,30 +244,13 @@ public class DietPlanner extends javax.swing.JFrame {
         System.out.println("height: " + height);
         System.out.println("age: " + age);
         System.out.println("gender: " + gender);
-        double calorie = 0;
         if (gender == 0) {
-            calorie = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age);
+            calorie = Math.round(66 + (6.3 * weight) + (12.9 * height) - (6.8 * age));
         } else {
-            calorie = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age);
+            calorie = Math.round(655 + (4.3 * weight) + (4.7 * height) - (4.7 * age));
         }
 
         output.setText("Your Suggested Calorie Input Is: " + calorie);
-        ArrayList<String> menu1 = new ArrayList<String>();
-        ArrayList<String> menu2 = new ArrayList<String>();
-        try {
-            menu1 = readFile(new File("Sherman"));
-            menu2 = readFile(new File("Usdan"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DietPlanner.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Usdan.append("Usdan Dinning Hall Menu:\n");
-        Sherman.append("Sherman Dinning Hall Menu:\n");
-        for (int i = 0; i < menu1.size(); i++) {
-            Sherman.append(menu1.get(i) + "\n");
-        }
-        for (int i = 0; i < menu2.size(); i++) {
-            Usdan.append(menu2.get(i) + "\n");
-        }
 
 
     }//GEN-LAST:event_enterActionPerformed
@@ -208,6 +262,44 @@ public class DietPlanner extends javax.swing.JFrame {
     private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_outputActionPerformed
+
+    private void UsdanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsdanMenuActionPerformed
+        try {
+            menu = readFile(new File("Usdan"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DietPlanner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < menu.size(); i++) {
+            eatingOptions.addItem(menu.get(i));
+        }
+        Display.append("You're going to Usdan!\n");
+    }//GEN-LAST:event_UsdanMenuActionPerformed
+
+    private void shermanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shermanMenuActionPerformed
+        try {
+            menu = readFile(new File("Sherman"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DietPlanner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < menu.size(); i++) {
+            eatingOptions.addItem(menu.get(i));
+        }
+        Display.append("You're going to Sherman!\n");
+    }//GEN-LAST:event_shermanMenuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int option = eatingOptions.getSelectedIndex();
+
+        String name = menu.get(option).replaceAll("[^0-9]", "");
+        int cal = Integer.parseInt(name);
+        if (calorie - cal >= 0) {
+            calorie = Math.round(calorie -= cal);
+            leftCalories.setText(calorie + "");
+            Display.append(menu.get(option) + "\n");
+        } else {
+            errorBox.setText("You can't excceed your calorie limit!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,18 +347,26 @@ public class DietPlanner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.TextArea Sherman;
-    private java.awt.TextArea Usdan;
+    private java.awt.TextArea Display;
+    private javax.swing.JButton UsdanMenu;
     private javax.swing.JTextField ageEnter;
+    private javax.swing.JComboBox<String> eatingOptions;
     private javax.swing.JButton enter;
+    private javax.swing.JTextField errorBox;
     private javax.swing.JComboBox<String> genderEnter;
     private javax.swing.JTextField heightEnter;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField leftCalories;
     private javax.swing.JTextField output;
+    private javax.swing.JButton shermanMenu;
     private javax.swing.JTextField weightEnter;
     // End of variables declaration//GEN-END:variables
 }
